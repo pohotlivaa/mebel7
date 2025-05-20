@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style/fonts.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Админ-панель</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.svg" alt="Логотип" width="40" height="40">
+            </a>
+        </div>
+        <nav class="nav">
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="calculator.html">Калькулятор и обратная связь</a>
+                <a href="stil.html">Стили мебели</a>
+                <a href="doki.html">О компании</a>
+            </div>
+            <div class="nav-spacer"></div>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <a href="calculator.html" class="back-btn">← Назад к калькулятору</a>
+        <h1 class="admin-title">Админ-панель</h1>
+        
+        <div id="orders-table-container">
+        </div>
+    </div>
+
+    <script>
+        // Проверка авторизации
+        function checkAuth() {
+            const isAuthenticated = sessionStorage.getItem('admin_authenticated') === 'true';
+            
+            if (!isAuthenticated) {
+                alert('Доступ запрещен!');
+                window.location.href = 'calculator.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // Отображение заказов
+        function displayOrders() {
+            if (!checkAuth()) return;
+            
+            const orders = JSON.parse(localStorage.getItem('furniture_orders')) || [];
+            
+            if (orders.length === 0) {
+                document.getElementById('orders-table-container').innerHTML = '<div class="no-orders"><p>Нет заказов</p></div>';
+                return;
+            }
+            
+            let tableHTML = `
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Телефон</th>
+                            <th>Email</th>
+                            <th>Стоимость</th>
+                            <th>Дата</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            // Сортируем по дате (новые сверху)
+            const sortedOrders = [...orders].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedOrders.forEach(order => {
+                tableHTML += `
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${order.name}</td>
+                        <td>${order.surname}</td>
+                        <td>${order.phone}</td>
+                        <td>${order.email}</td>
+                        <td>${order.estimated_price} руб.</td>
+                        <td>${new Date(order.date).toLocaleString()}</td>
+                        <td>
+                            <button onclick="deleteOrder(${order.id})" class="delete-btn">
+                                Удалить
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            document.getElementById('orders-table-container').innerHTML = tableHTML;
+        }
+        
+        // Удаление заказа
+        window.deleteOrder = function(id) {
+            if (!checkAuth()) return;
+            
+            if (confirm('Вы уверены, что хотите удалить этот заказ?')) {
+                const orders = JSON.parse(localStorage.getItem('furniture_orders')) || [];
+                const updatedOrders = orders.filter(order => order.id !== id);
+                localStorage.setItem('furniture_orders', JSON.stringify(updatedOrders));
+                displayOrders();
+            }
+        };
+        
+        // Инициализация
+        displayOrders();
+    </script>
+</body>
+</html>

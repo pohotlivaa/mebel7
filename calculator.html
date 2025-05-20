@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/fonts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Калькулятор мебели</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.svg" alt="Логотип" width="40" height="40">
+            </a>
+        </div>
+        <nav class="nav">
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="calculator.html">Калькулятор и обратная связь</a>
+                <a href="stil.html">Стили мебели</a>
+                <a href="doki.html">О компании</a>
+            </div>
+            <div class="nav-spacer"></div>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <h1 class="calculator-title">Калькулятор стоимости мебели</h1>
+        <p class="calculator-description">Рассчитайте примерную стоимость вашей будущей мебели. Укажите параметры, и система автоматически подсчитает стоимость. Для точного расчета оставьте заявку - наш менеджер свяжется с вами для уточнения деталей.</p>
+        
+        <div class="forms-container">
+            <!-- Форма расчета стоимости -->
+            <div class="form-section">
+                <h2 class="form-title">Рассчитать стоимость</h2>
+                <form id="calculator-form">
+                    <!-- Основные параметры -->
+                    <div class="form-group">
+                        <label for="furniture-type">Тип мебели <span class="info-icon" title="Выберите тип мебели, который вас интересует">?</span></label>
+                        <select id="furniture-type" required>
+                            <option value="">Выберите тип</option>
+                            <option value="wardrobe">Шкаф</option>
+                            <option value="kitchen">Кухня</option>
+                            <option value="table">Стол</option>
+                            <option value="bed">Кровать</option>
+                            <option value="shelf">Полка/Стеллаж</option>
+                            <option value="cabinet">Тумба/Комод</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="material">Материал <span class="info-icon" title="Основной материал изготовления мебели">?</span></label>
+                        <select id="material" required>
+                            <option value="">Выберите материал</option>
+                            <option value="wood">Натуральное дерево (дуб, ясень)</option>
+                            <option value="mdf">МДФ с покрытием</option>
+                            <option value="plastic">Пластик</option>
+                            <option value="metal">Металл</option>
+                            <option value="glass">Стекло</option>
+                            <option value="plywood">Фанера</option>
+                            <option value="chipboard">ЛДСП</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">Размер (м²) <span class="info-icon" title="Укажите примерную площадь мебели в квадратных метрах">?</span></label>
+                        <input type="number" id="size" min="0.1" step="0.1" required>
+                        <div class="size-hint" id="size-hint"></div>
+                    </div>
+                    
+                    <!-- Дополнительные параметры -->
+                    <div class="form-group">
+                        <label for="style">Стиль мебели <span class="info-icon" title="Выберите стиль, который вам нравится">?</span></label>
+                        <select id="style">
+                            <option value="classic">Классический</option>
+                            <option value="modern">Современный</option>
+                            <option value="loft">Лофт</option>
+                            <option value="provence">Прованс</option>
+                            <option value="scandinavian">Скандинавский</option>
+                            <option value="minimalism">Минимализм</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color">Цвет <span class="info-icon" title="Основной цвет мебели">?</span></label>
+                        <select id="color">
+                            <option value="light">Светлый (белый, бежевый)</option>
+                            <option value="dark">Темный (коричневый, черный)</option>
+                            <option value="colored">Цветной</option>
+                            <option value="wooden">Под дерево</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hardware">Фурнитура <span class="info-icon" title="Качество используемой фурнитуры (ручки, петли, механизмы)">?</span></label>
+                        <select id="hardware">
+                            <option value="standard">Стандартная</option>
+                            <option value="premium">Премиум</option>
+                            <option value="luxury">Люкс (брендовая)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Дополнительные опции:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="lighting" name="lighting">
+                            <label for="lighting">Подсветка</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="mirror" name="mirror">
+                            <label for="mirror">Зеркало</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="glass-doors" name="glass-doors">
+                            <label for="glass-doors">Стеклянные двери</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="urgency">Срочность изготовления <span class="info-icon" title="Стандартные сроки - 2-4 недели">?</span></label>
+                        <select id="urgency">
+                            <option value="standard">Стандартные сроки</option>
+                            <option value="express">Экспресс (доплата 20%)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="calculate-btn">Рассчитать</button>
+                    
+                    <div id="result" class="result" style="display: none;">
+                        <h3>Примерная стоимость: <span id="price">0</span> руб.</h3>
+                        <p class="result-note">*Точную стоимость уточнит менеджер после обсуждения деталей</p>
+                        <div id="price-details" class="price-details"></div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Форма заявки -->
+            <div class="form-section">
+                <h2 class="form-title">Оставить заявку</h2>
+                <p class="form-description">Оставьте свои контакты, и наш менеджер свяжется с вами для уточнения деталей и оформления заказа.</p>
+                
+                <form id="order-form">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="surname">Фамилия</label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Комментарии к заказу</label>
+                        <textarea id="comments" name="comments" rows="3"></textarea>
+                    </div>
+                    
+                    <input type="hidden" name="estimated_price" id="estimated-price" value="0">
+                    <input type="hidden" name="calculation_data" id="calculation-data" value="">
+                    
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+                
+                <div id="order-success" class="success-message" style="display: none;">
+                    <h3>Спасибо за заявку!</h3>
+                    <p>Мы получили ваши данные и скоро свяжемся с вами для уточнения деталей.</p>
+                </div>
+            </div>
+        </div>
+        
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <a href="index.html" class="footer-item">Главная</a>
+                <a href="calculator.html" class="footer-item">Калькулятор</a>
+                <a href="about.html" class="footer-item">О компании</a>
+                <a href="portfolio.html" class="footer-item">Портфолио</a>
+            </div>
+            <div class="footer-column">
+                <a href="#" class="footer-item">Контакты</a>
+                <a href="#" class="footer-item">Доставка и оплата</a>
+                <a href="#" class="footer-item">Отзывы</a>
+                <a href="#" class="footer-item">Блог</a>
+            </div>
+            <div class="footer-column">
+                <a href="tel:+78001234567" class="footer-item">+7 (800) 123-45-67</a>
+                <a href="mailto:info@mebel-dream.ru" class="footer-item">info@mebel-dream.ru</a>
+                <a href="#" class="footer-item">г. Москва, ул. Мебельная, 15</a>
+                <a href="#" class="footer-item">Режим работы: 9:00-21:00</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка админа -->
+    <button class="admin-btn" id="admin-btn">Админ-панель</button>
+
+    <!-- Модальное окно с деталями расчета -->
+    <div id="calculation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Детали расчета</h2>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Хранилище для заказов
+        let orders = JSON.parse(localStorage.getItem('furniture_orders')) || [];
+        
+        // Подсказки по размерам при выборе типа мебели
+        document.getElementById('furniture-type').addEventListener('change', function() {
+            const type = this.value;
+            const hintElement = document.getElementById('size-hint');
+            let hintText = '';
+            
+            switch(type) {
+                case 'wardrobe':
+                    hintText = 'Для шкафа укажите площадь фасада (высота × ширину). Например, шкаф 2м × 0.6м = 1.2м²';
+                    break;
+                case 'kitchen':
+                    hintText = 'Для кухни укажите длину в погонных метрах. Средняя стоимость рассчитывается за 1 погонный метр';
+                    break;
+                case 'table':
+                    hintText = 'Для стола укажите площадь столешницы (длина × ширину). Например, стол 1.5м × 0.8м = 1.2м²';
+                    break;
+                case 'bed':
+                    hintText = 'Для кровати укажите площадь спального места (длина × ширину). Например, кровать 2м × 1.6м = 3.2м²';
+                    break;
+                case 'shelf':
+                    hintText = 'Для полки/стеллажа укажите площадь фасада (высота × ширину)';
+                    break;
+                case 'cabinet':
+                    hintText = 'Для тумбы/комода укажите площадь фасада (высота × ширину)';
+                    break;
+                default:
+                    hintText = '';
+            }
+            
+            hintElement.textContent = hintText;
+        });
+        
+        // Маска для телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' (' + x[2] + ') ' + x[3] + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+        
+        // Расчет стоимости
+        document.getElementById('calculator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const type = document.getElementById('furniture-type').value;
+            const material = document.getElementById('material').value;
+            const size = parseFloat(document.getElementById('size').value);
+            const style = document.getElementById('style').value;
+            const color = document.getElementById('color').value;
+            const hardware = document.getElementById('hardware').value;
+            const lighting = document.getElementById('lighting').checked;
+            const mirror = document.getElementById('mirror').checked;
+            const glassDoors = document.getElementById('glass-doors').checked;
+            const urgency = document.getElementById('urgency').value;
+            
+            // Базовые цены для каждого типа мебели
+            let basePrice = 0;
+            let baseDescription = '';
+            
+            switch(type) {
+                case 'wardrobe': 
+                    basePrice = 12000;
+                    baseDescription = 'Шкаф (базовая стоимость за 1м²)';
+                    break;
+                case 'kitchen': 
+                    basePrice = 30000;
+                    baseDescription = 'Кухня (базовая стоимость за 1 погонный метр)';
+                    break;
+                case 'table': 
+                    basePrice = 8000;
+                    baseDescription = 'Стол (базовая стоимость за 1м² столешницы)';
+                    break;
+                case 'sofa': 
+                    basePrice = 20000;
+                    baseDescription = 'Диван (базовая стоимость)';
+                    break;
+                case 'bed': 
+                    basePrice = 15000;
+                    baseDescription = 'Кровать (базовая стоимость за 1м²)';
+                    break;
+                case 'shelf': 
+                    basePrice = 5000;
+                    baseDescription = 'Полка/Стеллаж (базовая стоимость за 1м²)';
+                    break;
+                case 'cabinet': 
+                    basePrice = 7000;
+                    baseDescription = 'Тумба/Комод (базовая стоимость за 1м²)';
+                    break;
+                default: 
+                    basePrice = 0;
+            }
+            
+            
+            // Коэффициенты для материалов
+            let materialCoeff = 1;
+            let materialDescription = '';
+            
+            switch(material) {
+                case 'wood': 
+                    materialCoeff = 1.8;
+                    materialDescription = 'Натуральное дерево ×1.8';
+                    break;
+                case 'mdf': 
+                    materialCoeff = 1.3;
+                    materialDescription = 'МДФ с покрытием ×1.3';
+                    break;
+                case 'plastic': 
+                    materialCoeff = 0.7;
+                    materialDescription = 'Пластик ×0.7';
+                    break;
+                case 'metal': 
+                    materialCoeff = 1.2;
+                    materialDescription = 'Металл ×1.2';
+                    break;
+                case 'glass': 
+                    materialCoeff = 1.5;
+                    materialDescription = 'Стекло ×1.5';
+                    break;
+                case 'plywood': 
+                    materialCoeff = 1.1;
+                    materialDescription = 'Фанера ×1.1';
+                    break;
+                case 'chipboard': 
+                    materialCoeff = 1.0;
+                    materialDescription = 'ЛДСП ×1.0';
+                    break;
+            }
+            
+            // Коэффициенты для стиля
+            let styleCoeff = 1;
+            let styleDescription = '';
+            
+            switch(style) {
+                case 'classic': 
+                    styleCoeff = 1.2;
+                    styleDescription = 'Классический стиль ×1.2';
+                    break;
+                case 'modern': 
+                    styleCoeff = 1.0;
+                    styleDescription = 'Современный стиль ×1.0';
+                    break;
+                case 'loft': 
+                    styleCoeff = 1.1;
+                    styleDescription = 'Лофт ×1.1';
+                    break;
+                case 'provence': 
+                    styleCoeff = 1.3;
+                    styleDescription = 'Прованс ×1.3';
+                    break;
+                case 'scandinavian': 
+                    styleCoeff = 1.15;
+                    styleDescription = 'Скандинавский ×1.15';
+                    break;
+case 'minimalism': 
+    styleCoeff = 1.05;
+    styleDescription = 'Минимализм ×1.05';
+    break;
+            }
+            
+            // Коэффициенты для цвета
+            let colorCoeff = 1;
+            let colorDescription = '';
+            
+            switch(color) {
+                case 'light': 
+                    colorCoeff = 1.0;
+                    colorDescription = 'Светлый цвет ×1.0';
+                    break;
+                case 'dark': 
+                    colorCoeff = 1.05;
+                    colorDescription = 'Темный цвет ×1.05';
+                    break;
+                case 'colored': 
+                    colorCoeff = 1.1;
+                    colorDescription = 'Цветной ×1.1';
+                    break;
+                case 'wooden': 
+                    colorCoeff = 1.15;
+                    colorDescription = 'Под дерево ×1.15';
+                    break;
+            }
+            
+            // Коэффициенты для фурнитуры
+            let hardwareCoeff = 1;
+            let hardwareDescription = '';
+            
+            switch(hardware) {
+                case 'standard': 
+                    hardwareCoeff = 1.0;
+                    hardwareDescription = 'Стандартная фурнитура ×1.0';
+                    break;
+                case 'premium': 
+                    hardwareCoeff = 1.3;
+                    hardwareDescription = 'Премиум фурнитура ×1.3';
+                    break;
+                case 'luxury': 
+                    hardwareCoeff = 1.6;
+                    hardwareDescription = 'Люкс фурнитура ×1.6';
+                    break;
+            }
+            
+            // Дополнительные опции
+            let optionsPrice = 0;
+            let optionsDescription = '';
+            
+            if (lighting) {
+                optionsPrice += 3000;
+                optionsDescription += '<p>Подсветка: +3 000 руб.</p>';
+            }
+            if (mirror) {
+                optionsPrice += 5000;
+                optionsDescription += '<p>Зеркало: +5 000 руб.</p>';
+            }
+            if (glassDoors) {
+                optionsPrice += 8000;
+                optionsDescription += '<p>Стеклянные двери: +8 000 руб.</p>';
+            }
+            
+            // Коэффициент срочности
+            let urgencyCoeff = 1;
+            let urgencyDescription = '';
+            
+            if (urgency === 'express') {
+                urgencyCoeff = 1.2;
+                urgencyDescription = '<p>Экспресс-изготовление ×1.2</p>';
+            } else {
+                urgencyDescription = '<p>Стандартные сроки ×1.0</p>';
+            }
+            
+            // Расчет итоговой стоимости
+            let totalPrice = Math.round(basePrice * materialCoeff * styleCoeff * colorCoeff * hardwareCoeff * urgencyCoeff * size + optionsPrice);
+            
+            // Форматирование числа с пробелами
+            const formattedPrice = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            
+            // Отображение результата
+            document.getElementById('price').textContent = formattedPrice;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('estimated-price').value = totalPrice;
+            
+            // Сохранение данных расчета для передачи в заявку
+            const calculationData = {
+                type,
+                material,
+                size,
+                style,
+                color,
+                hardware,
+                lighting,
+                mirror,
+                glassDoors,
+                urgency,
+                totalPrice
+            };
+            document.getElementById('calculation-data').value = JSON.stringify(calculationData);
+            
+            // Детали расчета
+            let priceDetails = `
+                <p>${baseDescription}: ${basePrice} руб.</p>
+                <p>${materialDescription}</p>
+                <p>${styleDescription}</p>
+                <p>${colorDescription}</p>
+                <p>${hardwareDescription}</p>
+                ${optionsDescription}
+                ${urgencyDescription}
+                <p><strong>Итого: ${formattedPrice} руб.</strong></p>
+            `;
+            
+            document.getElementById('price-details').innerHTML = priceDetails;
+        });
+        
+        // Обработка формы заявки
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                surname: document.getElementById('surname').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                comments: document.getElementById('comments').value,
+                estimated_price: document.getElementById('estimated-price').value,
+                calculation_data: document.getElementById('calculation-data').value,
+                date: new Date().toISOString(),
+                id: Date.now(), // Уникальный ID для заказа
+                status: 'new' // Статус заказа
+            };
+            
+            orders.push(formData);
+            localStorage.setItem('furniture_orders', JSON.stringify(orders));
+            
+            // Скрываем форму и показываем сообщение об успехе
+            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('order-success').style.display = 'block';
+            
+            // Прокрутка к сообщению об успехе
+            document.getElementById('order-success').scrollIntoView({ behavior: 'smooth' });
+            
+            // Очистка формы калькулятора
+            document.getElementById('calculator-form').reset();
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('size-hint').textContent = '';
+        });
+        
+        // Переход в админ-панель
+        document.getElementById('admin-btn').addEventListener('click', function() {
+            const password = prompt('Введите пароль для доступа к админ-панели:');
+            if (password === 'admin123') {
+                // Сохраняем флаг авторизации в sessionStorage
+                sessionStorage.setItem('admin_authenticated', 'true');
+                window.location.href = 'admin.html';
+            } else {
+                alert('Неверный пароль!');
+            }
+        });
+        
+        // Закрытие модального окна
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('calculation-modal').style.display = 'none';
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('calculation-modal')) {
+                document.getElementById('calculation-modal').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
