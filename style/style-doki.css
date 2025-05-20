@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Шапка (как в основном сайте) */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px 31px;
+    border-bottom: 1px solid #eee;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    margin-right: 72px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: flex;
+    gap: 72px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav-spacer {
+    width: 189px;
+    flex-shrink: 0;
+}
+
+/* Основной контент страницы "О компании" */
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 31px;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-header h1 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #A13F40;
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.advantages {
+    margin-top: 60px;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.advantage-card {
+    background: #FFFEEE;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.advantage-card h3 {
+    margin: 20px 0 15px;
+    color: #A13F40;
+}
+
+/* Подвал (как в основном сайте) */
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px 31px;
+    border-top: 1px solid #eee;
+    margin-top: 60px;
+}
+
+.footer-columns {
+    display: flex;
+    gap: 71px;
+    margin-right: 83px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-item {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Адаптив для планшетов (768px - 1024px) */
+@media (max-width: 1024px) {
+    .header {
+        padding: 20px 25px;
+    }
+
+    .logo {
+        margin-right: 40px;
+    }
+
+    .nav-links {
+        gap: 40px;
+    }
+
+    .nav-spacer {
+        width: 100px;
+    }
+
+    .about-header h1 {
+        font-size: 32px;
+    }
+
+    .about-content {
+        gap: 30px;
+    }
+
+    .advantages-grid {
+        gap: 20px;
+    }
+
+    .footer-columns {
+        gap: 50px;
+        margin-right: 50px;
+    }
+}
+
+/* Адаптив для мобильных устройств (до 768px) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .logo {
+        margin-right: 0;
+        align-self: flex-start;
+    }
+
+    .nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-spacer {
+        display: none;
+    }
+
+    .about-container {
+        padding: 30px 15px;
+    }
+
+    .about-header h1 {
+        font-size: 28px;
+    }
+
+    .about-header p {
+        font-size: 16px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .about-image {
+        order: -1;
+    }
+
+    .advantages h2 {
+        font-size: 24px;
+    }
+
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .footer {
+        justify-content: center;
+        padding: 30px 15px;
+    }
+
+    .footer-columns {
+        flex-direction: column;
+        gap: 30px;
+        margin-right: 0;
+    }
+}
+
+/* Мелкие мобильные устройства (до 480px) */
+@media (max-width: 480px) {
+    .about-header h1 {
+        font-size: 24px;
+    }
+
+    .about-text h2 {
+        font-size: 20px;
+    }
+
+    .advantage-card {
+        padding: 20px;
+    }
+
+    .advantage-card h3 {
+        font-size: 18px;
+    }
+
+    .footer-item {
+        font-size: 14px;
+    }
+}

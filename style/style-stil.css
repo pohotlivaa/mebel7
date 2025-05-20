@@ -1,0 +1,90 @@
+.styles-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.styles-page h1 {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.style-section {
+    margin-bottom: 60px;
+}
+
+.style-section h2 {
+    font-size: 32px;
+    color: #A13F40;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.style-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.style-text {
+    flex: 1;
+}
+
+.style-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.style-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.style-features {
+    background-color: #FFFEEE;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.style-features h3 {
+    color: #A13F40;
+    margin-bottom: 15px;
+}
+
+.style-features ul {
+    list-style-type: none;
+}
+
+.style-features li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.style-features li:before {
+    content: "•";
+    color: #A13F40;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+@media (max-width: 768px) {
+    .style-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .style-section h2 {
+        font-size: 28px;
+    }
+}
